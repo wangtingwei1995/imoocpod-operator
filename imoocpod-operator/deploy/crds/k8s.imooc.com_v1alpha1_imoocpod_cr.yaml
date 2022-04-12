@@ -1,0 +1,7 @@
+apiVersion: k8s.imooc.com/v1alpha1
+kind: ImoocPod
+metadata:
+  name: example-imoocpod
+spec:
+  # Add fields here
+  size: 3

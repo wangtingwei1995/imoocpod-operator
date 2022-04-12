@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: imoocpod-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: imoocpod-operator
+  template:
+    metadata:
+      labels:
+        name: imoocpod-operator
+    spec:
+      serviceAccountName: imoocpod-operator
+      containers:
+        - name: imoocpod-operator
+          # Replace this with the built image name
+          image: 192.168.137.201:5000/test/imoocpod-operator:v1
+          command:
+          - imoocpod-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "imoocpod-operator"

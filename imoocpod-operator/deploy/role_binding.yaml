@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: imoocpod-operator
+subjects:
+- kind: ServiceAccount
+  name: imoocpod-operator
+roleRef:
+  kind: Role
+  name: imoocpod-operator
+  apiGroup: rbac.authorization.k8s.io
